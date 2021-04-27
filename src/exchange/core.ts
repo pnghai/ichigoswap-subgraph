@@ -3,7 +3,7 @@ import { BigInt, BigDecimal, store } from "@graphprotocol/graph-ts";
 import {
   Pair,
   Token,
-  PancakeFactory,
+  StrawberryFactory,
   Transaction,
   Mint as MintEvent,
   Burn as BurnEvent,
@@ -11,7 +11,7 @@ import {
   Bundle,
 } from "../../generated/schema";
 import { Mint, Burn, Swap, Transfer, Sync } from "../../generated/templates/Pair/Pair";
-import { updatePairDayData, updateTokenDayData, updatePancakeDayData, updatePairHourData } from "./dayUpdates";
+import { updatePairDayData, updateTokenDayData, updateStrawberryDayData, updatePairHourData } from "./dayUpdates";
 import { getBnbPriceInUSD, findBnbPerToken, getTrackedVolumeUSD, getTrackedLiquidityUSD } from "./pricing";
 import { convertTokenToDecimal, ADDRESS_ZERO, FACTORY_ADDRESS, ONE_BI, ZERO_BD, BI_18 } from "./utils";
 
@@ -25,7 +25,7 @@ export function handleTransfer(event: Transfer): void {
     return;
   }
 
-  let factory = PancakeFactory.load(FACTORY_ADDRESS);
+  let factory = StrawberryFactory.load(FACTORY_ADDRESS);
   let transactionHash = event.transaction.hash.toHexString();
 
   let from = event.params.from;
@@ -174,10 +174,10 @@ export function handleSync(event: Sync): void {
   let pair = Pair.load(event.address.toHex());
   let token0 = Token.load(pair.token0);
   let token1 = Token.load(pair.token1);
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+  let strawberry = StrawberryFactory.load(FACTORY_ADDRESS);
 
   // reset factory liquidity by subtracting onluy tarcked liquidity
-  pancake.totalLiquidityBNB = pancake.totalLiquidityBNB.minus(pair.trackedReserveBNB as BigDecimal);
+  strawberry.totalLiquidityBNB = strawberry.totalLiquidityBNB.minus(pair.trackedReserveBNB as BigDecimal);
 
   // reset token total liquidity amounts
   token0.totalLiquidity = token0.totalLiquidity.minus(pair.reserve0);
@@ -225,8 +225,8 @@ export function handleSync(event: Sync): void {
   pair.reserveUSD = pair.reserveBNB.times(bundle.bnbPrice);
 
   // use tracked amounts globally
-  pancake.totalLiquidityBNB = pancake.totalLiquidityBNB.plus(trackedLiquidityBNB);
-  pancake.totalLiquidityUSD = pancake.totalLiquidityBNB.times(bundle.bnbPrice);
+  strawberry.totalLiquidityBNB = strawberry.totalLiquidityBNB.plus(trackedLiquidityBNB);
+  strawberry.totalLiquidityUSD = strawberry.totalLiquidityBNB.times(bundle.bnbPrice);
 
   // now correctly set liquidity amounts for each token
   token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
@@ -234,7 +234,7 @@ export function handleSync(event: Sync): void {
 
   // save entities
   pair.save();
-  pancake.save();
+  strawberry.save();
   token0.save();
   token1.save();
 }
@@ -245,7 +245,7 @@ export function handleMint(event: Mint): void {
   let mint = MintEvent.load(mints[mints.length - 1]);
 
   let pair = Pair.load(event.address.toHex());
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+  let strawberry = StrawberryFactory.load(FACTORY_ADDRESS);
 
   let token0 = Token.load(pair.token0);
   let token1 = Token.load(pair.token1);
@@ -267,13 +267,13 @@ export function handleMint(event: Mint): void {
 
   // update txn counts
   pair.txCount = pair.txCount.plus(ONE_BI);
-  pancake.txCount = pancake.txCount.plus(ONE_BI);
+  strawberry.txCount = strawberry.txCount.plus(ONE_BI);
 
   // save entities
   token0.save();
   token1.save();
   pair.save();
-  pancake.save();
+  strawberry.save();
 
   mint.sender = event.params.sender;
   mint.amount0 = token0Amount as BigDecimal;
@@ -285,7 +285,7 @@ export function handleMint(event: Mint): void {
   // update day entities
   updatePairDayData(event);
   updatePairHourData(event);
-  updatePancakeDayData(event);
+  updateStrawberryDayData(event);
   updateTokenDayData(token0 as Token, event);
   updateTokenDayData(token1 as Token, event);
 }
@@ -302,7 +302,7 @@ export function handleBurn(event: Burn): void {
   let burn = BurnEvent.load(burns[burns.length - 1]);
 
   let pair = Pair.load(event.address.toHex());
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+  let strawberry = StrawberryFactory.load(FACTORY_ADDRESS);
 
   //update token info
   let token0 = Token.load(pair.token0);
@@ -322,14 +322,14 @@ export function handleBurn(event: Burn): void {
     .times(bundle.bnbPrice);
 
   // update txn counts
-  pancake.txCount = pancake.txCount.plus(ONE_BI);
+  strawberry.txCount = strawberry.txCount.plus(ONE_BI);
   pair.txCount = pair.txCount.plus(ONE_BI);
 
   // update global counter and save
   token0.save();
   token1.save();
   pair.save();
-  pancake.save();
+  strawberry.save();
 
   // update burn
   // burn.sender = event.params.sender
@@ -343,7 +343,7 @@ export function handleBurn(event: Burn): void {
   // update day entities
   updatePairDayData(event);
   updatePairHourData(event);
-  updatePancakeDayData(event);
+  updateStrawberryDayData(event);
   updateTokenDayData(token0 as Token, event);
   updateTokenDayData(token1 as Token, event);
 }
@@ -410,17 +410,17 @@ export function handleSwap(event: Swap): void {
   pair.save();
 
   // update global values, only used tracked amounts for volume
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
-  pancake.totalVolumeUSD = pancake.totalVolumeUSD.plus(trackedAmountUSD);
-  pancake.totalVolumeBNB = pancake.totalVolumeBNB.plus(trackedAmountBNB);
-  pancake.untrackedVolumeUSD = pancake.untrackedVolumeUSD.plus(derivedAmountUSD);
-  pancake.txCount = pancake.txCount.plus(ONE_BI);
+  let strawberry = StrawberryFactory.load(FACTORY_ADDRESS);
+  strawberry.totalVolumeUSD = strawberry.totalVolumeUSD.plus(trackedAmountUSD);
+  strawberry.totalVolumeBNB = strawberry.totalVolumeBNB.plus(trackedAmountBNB);
+  strawberry.untrackedVolumeUSD = strawberry.untrackedVolumeUSD.plus(derivedAmountUSD);
+  strawberry.txCount = strawberry.txCount.plus(ONE_BI);
 
   // save entities
   pair.save();
   token0.save();
   token1.save();
-  pancake.save();
+  strawberry.save();
 
   let transaction = Transaction.load(event.transaction.hash.toHexString());
   if (transaction === null) {
@@ -464,15 +464,15 @@ export function handleSwap(event: Swap): void {
   // update day entities
   let pairDayData = updatePairDayData(event);
   let pairHourData = updatePairHourData(event);
-  let pancakeDayData = updatePancakeDayData(event);
+  let strawberryDayData = updateStrawberryDayData(event);
   let token0DayData = updateTokenDayData(token0 as Token, event);
   let token1DayData = updateTokenDayData(token1 as Token, event);
 
   // swap specific updating
-  pancakeDayData.dailyVolumeUSD = pancakeDayData.dailyVolumeUSD.plus(trackedAmountUSD);
-  pancakeDayData.dailyVolumeBNB = pancakeDayData.dailyVolumeBNB.plus(trackedAmountBNB);
-  pancakeDayData.dailyVolumeUntracked = pancakeDayData.dailyVolumeUntracked.plus(derivedAmountUSD);
-  pancakeDayData.save();
+  strawberryDayData.dailyVolumeUSD = strawberryDayData.dailyVolumeUSD.plus(trackedAmountUSD);
+  strawberryDayData.dailyVolumeBNB = strawberryDayData.dailyVolumeBNB.plus(trackedAmountBNB);
+  strawberryDayData.dailyVolumeUntracked = strawberryDayData.dailyVolumeUntracked.plus(derivedAmountUSD);
+  strawberryDayData.save();
 
   // swap specific updating for pair
   pairDayData.dailyVolumeToken0 = pairDayData.dailyVolumeToken0.plus(amount0Total);

@@ -1,4 +1,4 @@
-type PancakeFactory @entity {
+type StrawberryFactory @entity {
   # factory address
   id: ID!
 
@@ -180,8 +180,8 @@ type Bundle @entity {
   bnbPrice: BigDecimal! # price of BNB usd
 }
 
-# Data accumulated and condensed into day stats for all of Pancake
-type PancakeDayData @entity {
+# Data accumulated and condensed into day stats for all of Strawberry
+type StrawberryDayData @entity {
   id: ID! # timestamp rounded to current day by dividing by 86400
   date: Int!
 
