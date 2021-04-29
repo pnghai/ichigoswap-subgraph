@@ -4,7 +4,7 @@ The Graph exposes a GraphQL endpoint to query the events and entities within the
 
 Currently, there are multiple subgraphs, but additional subgraphs can be added to this repo:
 
-1. **[Blocks](https://thegraph.com/explorer/subgraph/pnghai/strawberryswap-blocks)**: Tracks all the blocks on Binance Smart Chain.
+1. **[Blocks](https://thegraph.com/explorer/subgraph/pancakeswap/blocks)**: Tracks all the blocks on Binance Smart Chain.
 
 2. **[Exchange](https://thegraph.com/explorer/subgraph/pnghai/strawberryswap-exchange)**: Tracks all StrawberrySwap Exchange data with price, volume, liquidity, ...
 
