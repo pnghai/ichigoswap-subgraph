@@ -199,7 +199,9 @@ export function handleSync(event: Sync): void {
   bundle.save();
 
   token0.derivedBNB = findBnbPerToken(token0 as Token);
+  token0.derivedUSD = token0.derivedBNB.times(bundle.bnbPrice);
   token1.derivedBNB = findBnbPerToken(token1 as Token);
+  token1.derivedUSD = token1.derivedBNB.times(bundle.bnbPrice);
   token0.save();
   token1.save();
 
