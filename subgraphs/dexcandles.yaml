@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: DEX trades candles (5m/15m/1h/4h/1d/1w)
-repository: https://github.com/pancakeswap
+repository: https://github.com/strawberryswap
 schema:
   file: ./dexcandles.graphql
 dataSources:
@@ -8,7 +8,7 @@ dataSources:
     name: Factory
     network: bsc
     source:
-      address: '0xBCfCcbde45cE874adCB698cC183deBcF17952812'
+      address: '0xBe9A2f33FC73cFa66C70BC2Ac6066aC5c91eA025'
       abi: Factory
       startBlock: 586851
     mapping:

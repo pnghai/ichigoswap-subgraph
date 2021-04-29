@@ -1,6 +1,6 @@
-# PancakeSwap Subgraph
+# StrawberrySwap Subgraph
 
-The Graph exposes a GraphQL endpoint to query the events and entities within the Binance Smart Chain and PancakeSwap ecosystem.
+The Graph exposes a GraphQL endpoint to query the events and entities within the Binance Smart Chain and StrawberrySwap ecosystem.
 
 Currently, there are multiple subgraphs, but additional subgraphs can be added to this repo:
 

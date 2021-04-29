@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: PancakeSwap Timelock contract
-repository: https://github.com/pancakeswap
+description: StrawberrySwap Timelock contract
+repository: https://github.com/pnghai
 schema:
   file: ./timelock.graphql
 dataSources:

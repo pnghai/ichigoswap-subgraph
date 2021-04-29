@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: PancakeSwap is a decentralized protocol for automated token exchange on Binance Smart Chain.
-repository: https://github.com/pancakeswap
+description: StrawberrySwap is a decentralized protocol for automated token exchange on Binance Smart Chain.
+repository: https://github.com/pnghai
 schema:
   file: ./exchange-lite.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: Factory
     network: bsc
     source:
-      address: '0xBCfCcbde45cE874adCB698cC183deBcF17952812'
+      address: '0xBe9A2f33FC73cFa66C70BC2Ac6066aC5c91eA025'
       abi: Factory
-      startBlock: 586851
+      startBlock: 6811564
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

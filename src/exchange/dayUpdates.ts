@@ -1,31 +1,31 @@
 /* eslint-disable prefer-const */
 import { PairHourData } from "../../generated/schema";
 import { BigInt, BigDecimal, ethereum } from "@graphprotocol/graph-ts";
-import { Pair, Bundle, Token, PancakeFactory, PancakeDayData, PairDayData, TokenDayData } from "../../generated/schema";
+import { Pair, Bundle, Token, StrawberryFactory, StrawberryDayData, PairDayData, TokenDayData } from "../../generated/schema";
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from "./utils";
 
-export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+export function updateStrawberryDayData(event: ethereum.Event): StrawberryDayData {
+  let strawberry = StrawberryFactory.load(FACTORY_ADDRESS);
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
-  let pancakeDayData = PancakeDayData.load(dayID.toString());
-  if (pancakeDayData === null) {
-    pancakeDayData = new PancakeDayData(dayID.toString());
-    pancakeDayData.date = dayStartTimestamp;
-    pancakeDayData.dailyVolumeUSD = ZERO_BD;
-    pancakeDayData.dailyVolumeBNB = ZERO_BD;
-    pancakeDayData.totalVolumeUSD = ZERO_BD;
-    pancakeDayData.totalVolumeBNB = ZERO_BD;
-    pancakeDayData.dailyVolumeUntracked = ZERO_BD;
+  let strawberryDayData = StrawberryDayData.load(dayID.toString());
+  if (strawberryDayData === null) {
+    strawberryDayData = new StrawberryDayData(dayID.toString());
+    strawberryDayData.date = dayStartTimestamp;
+    strawberryDayData.dailyVolumeUSD = ZERO_BD;
+    strawberryDayData.dailyVolumeBNB = ZERO_BD;
+    strawberryDayData.totalVolumeUSD = ZERO_BD;
+    strawberryDayData.totalVolumeBNB = ZERO_BD;
+    strawberryDayData.dailyVolumeUntracked = ZERO_BD;
   }
 
-  pancakeDayData.totalLiquidityUSD = pancake.totalLiquidityUSD;
-  pancakeDayData.totalLiquidityBNB = pancake.totalLiquidityBNB;
-  pancakeDayData.txCount = pancake.txCount;
-  pancakeDayData.save();
+  strawberryDayData.totalLiquidityUSD = strawberry.totalLiquidityUSD;
+  strawberryDayData.totalLiquidityBNB = strawberry.totalLiquidityBNB;
+  strawberryDayData.txCount = strawberry.txCount;
+  strawberryDayData.save();
 
-  return pancakeDayData as PancakeDayData;
+  return strawberryDayData as StrawberryDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {

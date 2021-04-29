@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Pancake Profile
-repository: https://github.com/pancakeswap
+description: Strawberry Profile
+repository: https://github.com/pnghai
 schema:
   file: ./profile.graphql
 dataSources:
