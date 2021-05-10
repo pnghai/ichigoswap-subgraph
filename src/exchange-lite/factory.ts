@@ -58,6 +58,7 @@ export function handlePairCreated(event: PairCreated): void {
   pair.volumeBNB = ZERO_BD;
   pair.volumeUSD = ZERO_BD;
   pair.untrackedVolumeUSD = ZERO_BD;
+  pair.untrackedVolumeBNB = ZERO_BD;
   pair.save();
 
   PairTemplate.create(event.params.pair);
