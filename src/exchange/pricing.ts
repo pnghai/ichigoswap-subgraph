@@ -4,7 +4,7 @@ import { Pair, Token, Bundle } from "../../generated/schema";
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from "./utils";
 
 const WBNB_ADDRESS = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
-const WBNB_BUSD_PAIR = "0x1b96b92314c44b159149f7e0303511fb2fc4774f"; // created block 589414
+const WBNB_BUSD_PAIR = "0x551055110c65737aefea6f5f5d1e769eb82baa33"; // created block 589414
 const DAI_WBNB_PAIR = "0xf3010261b58b2874639ca2e860e9005e3be5de0b"; // created block 481116
 const USDT_WBNB_PAIR = "0x20bcc3b8a0091ddac2d0bc30f68e6cbb97de59cd"; // created block 648115
 
