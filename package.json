@@ -6,6 +6,8 @@
   "author": "StrawberrySwap",
   "license": "MIT",
   "scripts": {
+    "prepare:exchange-lite": "mustache config/bsc.json subgraphs/exchange-lite.template.yaml > subgraphs/exchange-lite.yaml",
+    "prepare:exchange-lite:chapel": "mustache config/chapel.json subgraphs/exchange-lite.template.yaml > subgraphs/exchange-lite.yaml",
     "codegen:blocks": "graph codegen subgraphs/blocks.yaml",
     "codegen:dexcandles": "graph codegen subgraphs/dexcandles.yaml",
     "codegen:exchange": "graph codegen subgraphs/exchange.yaml",
@@ -22,6 +24,7 @@
     "deploy:dexcandles": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-dex-candles subgraphs/dexcandles.yaml",
     "deploy:exchange": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-exchange subgraphs/exchange.yaml",
     "deploy:exchange-lite": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-exchange-lite subgraphs/exchange-lite.yaml",
+    "deploy:exchange-lite:chapel": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/stbe-ex-lite-chapel subgraphs/exchange-lite.yaml",
     "deploy:profile": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-profile subgraphs/profile.yaml",
     "deploy:timelock": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-timelock subgraphs/timelock.yaml",
     "format": "prettier --write '*/**/*.{js,ts}'",
@@ -37,6 +40,7 @@
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "husky": "^4.3.8",
+    "mustache": "^4.2.0",
     "prettier": "^2.2.1",
     "typescript": "^4.2.2"
   }
