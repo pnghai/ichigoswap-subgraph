@@ -23,7 +23,7 @@
     "deploy:blocks": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-blocks subgraphs/blocks.yaml",
     "deploy:dexcandles": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-dex-candles subgraphs/dexcandles.yaml",
     "deploy:exchange": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-exchange subgraphs/exchange.yaml",
-    "deploy:exchange-lite": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-exchange-lite subgraphs/exchange-lite.yaml",
+    "deploy:exchange-lite": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-exchange-lite subgraphs/exchange-lite.yaml --debug",
     "deploy:exchange-lite:chapel": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/stbe-ex-lite-chapel subgraphs/exchange-lite.yaml",
     "deploy:profile": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-profile subgraphs/profile.yaml",
     "deploy:timelock": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-timelock subgraphs/timelock.yaml",

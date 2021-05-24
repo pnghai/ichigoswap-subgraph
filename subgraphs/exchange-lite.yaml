@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: chapel
+    network: bsc
     source:
-      address: '0x0337cAbef18293f8bC4A56029A2E830C2a3f192F'
+      address: '0xBe9A2f33FC73cFa66C70BC2Ac6066aC5c91eA025'
       abi: Factory
-      startBlock: 7784331
+      startBlock: 6901347
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -34,7 +34,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: chapel
+    network: bsc
     source:
       abi: Pair
     mapping:
