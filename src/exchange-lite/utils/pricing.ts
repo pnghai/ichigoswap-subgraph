@@ -54,7 +54,7 @@ let WHITELIST: string[] = [
 ];
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_BNB = BigDecimal.fromString("5");
+let MINIMUM_LIQUIDITY_THRESHOLD_BNB = BigDecimal.fromString("0.0001");
 
 /**
  * Search through graph to find derived BNB per token.
