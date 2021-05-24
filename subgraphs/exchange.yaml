@@ -21,7 +21,7 @@ dataSources:
         - Token
       abis:
         - name: Factory
-          file: ../abis/factory.json
+          file: ../abis/Factory.json
         - name: BEP20
           file: ../abis/BEP20.json
         - name: BEP20NameBytes
@@ -47,9 +47,9 @@ templates:
         - Token
       abis:
         - name: Factory
-          file: ../abis/factory.json
+          file: ../abis/Factory.json
         - name: Pair
-          file: ../abis/pair.json
+          file: ../abis/Pair.json
       eventHandlers:
         - event: Mint(indexed address,uint256,uint256)
           handler: handleMint

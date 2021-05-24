@@ -61,26 +61,6 @@ type Pair @entity {
   "Token0 Symbol - Token1 Symbol"
   name: String!
 
-  "Token0 reserve"
-  reserve0: BigDecimal!
-  "Token1 reserve"
-  reserve1: BigDecimal!
-
-  "Reserve, in BNB"
-  reserveBNB: BigDecimal!
-
-  "Token0 price"
-  token0Price: BigDecimal!
-  "Token1 price"
-  token1Price: BigDecimal!
-  "Volume, in token0 (base)"
-  volumeToken0: BigDecimal!
-  "Volume, in token1 (quote)"
-  volumeToken1: BigDecimal!
-
-  "Volume, in BNB"
-  volumeBNB: BigDecimal!
-
   "Block number"
   block: BigInt!
   "Block timestamp"
@@ -100,10 +80,4 @@ type Token @entity {
   symbol: String!
   "Decimals"
   decimals: BigInt!
-
-  "Price, in BNB"
-  derivedBNB: BigDecimal!
-
-  "Pairs, with whitelisted Token(s)"
-  whitelist: [Pair!]!
 }
