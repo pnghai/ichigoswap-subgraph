@@ -1,11 +1,10 @@
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, Address } from "@graphprotocol/graph-ts";
 import { Factory as FactoryContract } from "../../../generated/templates/Pair/Factory";
+import { CONFIG_FACTORY_ADDRESS } from './config';
 
 export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
-//TODO: dynamic change by chapel/bsc 
-//testnet 0x0337cAbef18293f8bC4A56029A2E830C2a3f192F
-export let FACTORY_ADDRESS = "0xBe9A2f33FC73cFa66C70BC2Ac6066aC5c91eA025";
+export let FACTORY_ADDRESS = CONFIG_FACTORY_ADDRESS;
 
 export let ZERO_BI = BigInt.fromI32(0);
 export let ONE_BI = BigInt.fromI32(1);

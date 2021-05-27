@@ -116,3 +116,6 @@ dist
 # GraphQL directories
 build/
 generated/
+.env
+
+src/exchange-lite/utils/config.js

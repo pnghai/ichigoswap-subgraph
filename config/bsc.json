@@ -1,5 +1,9 @@
 {
     "network": "bsc",
     "address": "0xBe9A2f33FC73cFa66C70BC2Ac6066aC5c91eA025",
-    "startBlock": 6901347
+    "startBlock": 6901347,
+    "wbnb_address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+    "BUSD_WBNB_PAIR": "0x551055110c65737aefea6f5f5d1e769eb82baa33",
+    "WBNB": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+    "BUSD": "0xe9e7cea3dedca5984780bafc599bd69add087d56"
 }

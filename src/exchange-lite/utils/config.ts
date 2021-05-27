@@ -1,0 +1,5 @@
+export let WBNB_ADDRESS= "0xae13d989dac2f0debff460ac112a837c89baa7cd"
+export let BUSD_WBNB_PAIR= "0xc8ccd9303109af4e76f32f6aa45207a0cce7722b"
+export let WBNB= "0xae13d989dac2f0debff460ac112a837c89baa7cd"
+export let BUSD= "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee"
+export let CONFIG_FACTORY_ADDRESS="0x0337cAbef18293f8bC4A56029A2E830C2a3f192F"
