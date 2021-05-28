@@ -4,9 +4,10 @@ import { BEP20 } from "../../../generated/Factory/BEP20";
 import { BEP20SymbolBytes } from "../../../generated/Factory/BEP20SymbolBytes";
 import { BEP20NameBytes } from "../../../generated/Factory/BEP20NameBytes";
 import { Factory as FactoryContract } from "../../../generated/templates/Pair/Factory";
+import { CONFIG_FACTORY_ADDRESS } from './config';
 
-export const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
-export const FACTORY_ADDRESS = "0xBe9A2f33FC73cFa66C70BC2Ac6066aC5c91eA025";
+export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
+export let FACTORY_ADDRESS = CONFIG_FACTORY_ADDRESS;
 
 export let ZERO_BI = BigInt.fromI32(0);
 export let ONE_BI = BigInt.fromI32(1);

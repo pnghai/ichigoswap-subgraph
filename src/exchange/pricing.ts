@@ -2,16 +2,14 @@
 import { BigDecimal, Address } from "@graphprotocol/graph-ts/index";
 import { Pair, Token, Bundle } from "../../generated/schema";
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from "./utils";
-
-const WBNB_ADDRESS = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
-const WBNB_BUSD_PAIR = "0x551055110c65737aefea6f5f5d1e769eb82baa33"; // created block 6902584 - 1619443913
+import {WBNB_ADDRESS , BUSD_WBNB_PAIR, WBNB, BUSD} from './utils/config';
 const DAI_WBNB_PAIR = "0xf3010261b58b2874639ca2e860e9005e3be5de0b"; // created block ?
 const USDT_WBNB_PAIR = "0x20bcc3b8a0091ddac2d0bc30f68e6cbb97de59cd"; // created block ?
 
 export function getBnbPriceInUSD(): BigDecimal {
   // fetch bnb prices for each stablecoin
   let usdtPair = Pair.load(USDT_WBNB_PAIR); // usdt is token0
-  let busdPair = Pair.load(WBNB_BUSD_PAIR); // busd is token1
+  let busdPair = Pair.load(BUSD_WBNB_PAIR); // busd is token1
   let daiPair = Pair.load(DAI_WBNB_PAIR); // dai is token0
 
   // all 3 have been created
@@ -42,8 +40,8 @@ export function getBnbPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c", // WBNB
-  "0xe9e7cea3dedca5984780bafc599bd69add087d56", // BUSD
+  WBNB, // WBNB
+  BUSD, // BUSD
   "0x55d398326f99059ff775485246999027b3197955", // USDT
   "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d", // USDC
   "0x23396cf899ca06c4472205fc903bdb4de249d6fc", // UST

@@ -6,6 +6,12 @@
   "author": "StrawberrySwap",
   "license": "MIT",
   "scripts": {
+    "prepare:exchange-template": "mustache config/bsc.json subgraphs/exchange.template.yaml > subgraphs/exchange.yaml",
+    "prepare:exchange-env": "mustache config/bsc.json src/exchange/utils/config.template.ts > src/exchange/utils/config.ts",
+    "prepare:exchange": "yarn prepare:exchange-template & yarn prepare:exchange-env",
+    "prepare:exchange-template:chapel": "mustache config/chapel.json subgraphs/exchange.template.yaml > subgraphs/exchange.yaml",
+    "prepare:exchange-env:chapel": "mustache config/chapel.json src/exchange/utils/config.template.ts > src/exchange/utils/config.ts",
+    "prepare:exchange:chapel": "yarn prepare:exchange-template:chapel & yarn prepare:exchange-env:chapel",
     "codegen:blocks": "graph codegen subgraphs/blocks.yaml",
     "codegen:dexcandles": "graph codegen subgraphs/dexcandles.yaml",
     "codegen:exchange": "graph codegen subgraphs/exchange.yaml",
@@ -21,6 +27,7 @@
     "deploy:blocks": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-blocks subgraphs/blocks.yaml",
     "deploy:dexcandles": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-dex-candles subgraphs/dexcandles.yaml",
     "deploy:exchange": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-exchange subgraphs/exchange.yaml",
+    "deploy:exchange:chapel": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/stbe-ex-chapel subgraphs/exchange.yaml",
     "deploy:timelock": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pnghai/strawberryswap-timelock subgraphs/timelock.yaml",
     "format": "prettier --write '*/**/*.{js,ts}'",
     "lint": "eslint '*/**/*.{js,ts}'"

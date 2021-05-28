@@ -1,0 +1,5 @@
+export let WBNB_ADDRESS= "{{wbnb_address}}"
+export let BUSD_WBNB_PAIR= "{{BUSD_WBNB_PAIR}}"
+export let WBNB= "{{WBNB}}"
+export let BUSD= "{{BUSD}}"
+export let CONFIG_FACTORY_ADDRESS="{{address}}"
