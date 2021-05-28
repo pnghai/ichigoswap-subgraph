@@ -10,6 +10,7 @@ dataSources:
     source:
       address: '{{blocks}}'
       abi: ConverterRegistryContract
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
