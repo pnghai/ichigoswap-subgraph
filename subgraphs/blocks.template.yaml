@@ -6,9 +6,9 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: ConverterRegistryContract
-    network: chapel
+    network: {{network}}
     source:
-      address: '0xC19F09a797438971CB2C2D49E5aDc09D3f6fbF05'
+      address: '{{blocks}}'
       abi: ConverterRegistryContract
     mapping:
       kind: ethereum/events
