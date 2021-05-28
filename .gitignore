@@ -118,5 +118,4 @@ build/
 generated/
 .env
 
-src/exchange-lite/utils/config.js
 config.ts
